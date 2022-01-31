@@ -35,10 +35,10 @@ const ToggleBlogDetails = (props) => {
 
     return(
 
-        <div style={blogStyle}>
+        <div style={blogStyle} className='blogTogglable'>
             {props.children}<button type='button' onClick={toggleDetails}>{buttonLabel}</button>
 
-            <div style={expanded}>
+            <div style={expanded} className='expanded'>
                 {children.map(child => (
                     <div key={child.blog.id}>
                         <p>url: {child.blog.url}</p>

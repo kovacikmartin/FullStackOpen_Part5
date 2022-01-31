@@ -28,10 +28,11 @@ const BlogForm = ({ addBlog }) => {
     const blogUrlChange = (event) => setNewBlogUrl(event.target.value)
 
     return(
-        <form onSubmit={addNewBlog}>
-            title: <input value={newBlogTitle} onChange={blogTitleChange}/><br/>
-            author: <input value={newBlogAuthor} onChange={blogAuthorChange}/><br/>
-            url: <input value={newBlogUrl} onChange={blogUrlChange}/><br/><br/>
+
+        <form onSubmit={addNewBlog} id='blogForm'>
+            title: <input id='title' value={newBlogTitle} onChange={blogTitleChange}/><br/>
+            author: <input id='author' value={newBlogAuthor} onChange={blogAuthorChange}/><br/>
+            url: <input id='url' value={newBlogUrl} onChange={blogUrlChange}/><br/><br/>
             <button type='submit'>Create</button>
         </form>
     )
