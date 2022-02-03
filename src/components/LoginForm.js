@@ -6,9 +6,9 @@ const LoginForm = ({ loginHandle, usernameHandle, passwordHandle, username, pass
     return(
 
         <form onSubmit={loginHandle}>
-            username: <input value={username} type='text' onChange={usernameHandle}/><br/>
-            password: <input value={password} type='password' onChange={passwordHandle}/><br/><br/>
-            <button type='submit'>Log in</button>
+            username: <input id='loginFormUsername' value={username} type='text' onChange={usernameHandle}/><br/>
+            password: <input id='loginFormPassword' value={password} type='password' onChange={passwordHandle}/><br/><br/>
+            <button id='loginFormLogin' type='submit'>Log in</button>
         </form>
     )
 }

@@ -33,7 +33,7 @@ const BlogForm = ({ addBlog }) => {
             title: <input id='title' value={newBlogTitle} onChange={blogTitleChange}/><br/>
             author: <input id='author' value={newBlogAuthor} onChange={blogAuthorChange}/><br/>
             url: <input id='url' value={newBlogUrl} onChange={blogUrlChange}/><br/><br/>
-            <button type='submit'>Create</button>
+            <button id='createButton' type='submit'>Create</button>
         </form>
     )
 }
