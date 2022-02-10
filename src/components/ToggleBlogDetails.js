@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteBlog } from '../reducers/blogReducer'
+import { showNotification } from '../reducers/notificationReducer'
 
 const ToggleBlogDetails = (props) => {
+
+    const dispatch = useDispatch()
 
     const [detailsHidden, setDetailsHidden] = useState(false)
     const [buttonLabel, setButtonLabel] = useState(props.buttonLabel)
@@ -20,7 +25,8 @@ const ToggleBlogDetails = (props) => {
     }
 
     const expanded = { display: detailsHidden ? 'block' : 'none' }
-    const children = React.Children.map(props.children, child => child.props)
+
+    const blog = useSelector(({ blog }) => blog.filter(blog => blog.id === props.children.props.blog.id))
 
     const blogStyle = {
 
@@ -28,9 +34,19 @@ const ToggleBlogDetails = (props) => {
         marginBottom: 10
     }
 
-    const deleteBlog = (child) => {
+    const remove = async (blogToDelete) => {
 
-        props.deleteBlog(child)
+        if(window.confirm(`Remove the blog ${blogToDelete.title} by ${blogToDelete.author} ?`)){
+
+            try{
+
+                await dispatch(deleteBlog(blogToDelete))
+                dispatch(showNotification('Blog succesfully deleted'))
+            }
+            catch(exception){
+                dispatch(showNotification('Sorry, there was an error while deleting the blog'))
+            }
+        }
     }
 
     return(
@@ -39,14 +55,14 @@ const ToggleBlogDetails = (props) => {
             {props.children}<button type='button' onClick={toggleDetails}>{buttonLabel}</button>
 
             <div style={expanded} className='expanded'>
-                {children.map(child => (
-                    <div key={child.blog.id}>
-                        <p>url: {child.blog.url}</p>
-                        <p>likes: {child.blog.likes}</p>
-                        <p>user: {child.blog.user.username}</p>
-                        {child.blog.user.username === props.postedBy ?
+                {blog.map(blog => (
+                    <div key={blog.id}>
+                        <p>url: {blog.url}</p>
+                        <p>likes: {blog.likes}</p>
+                        <p>user: {blog.user.username}</p>
+                        {blog.user.username === props.postedBy ?
 
-                            <button type='button' onClick={() => deleteBlog(child.blog)}>Remove</button> : null
+                            <button type='button' onClick={() => remove(blog)}>Remove</button> : null
                         }
 
                     </div>
