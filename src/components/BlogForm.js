@@ -34,10 +34,25 @@ const BlogForm = ({ visibility }) => {
     return(
 
         <form onSubmit={addNewBlog} id='blogForm'>
-            title: <input id='title' name='title' /><br/>
-            author: <input id='author' name='author' /><br/>
-            url: <input id='url' name='url'/><br/><br/>
-            <button id='createButton' type='submit'>Create</button>
+            <div className='row mb-3'>
+                <label htmlFor='title' className='col-form-label'>Title</label>
+                <div className='col-sm-4'>
+                    <input id='title' name='title' type='text' className='form-control' />
+                </div>
+            </div>
+            <div className='row mb-3'>
+                <label htmlFor='author' className='col-form-label'>Author</label>
+                <div className='col-sm-4'>
+                    <input id='author' name='author' type='text' className='form-control' />
+                </div>
+            </div>
+            <div className='row mb-3'>
+                <label htmlFor='url' className='col-form-label'>Url</label>
+                <div className='col-sm-4'>
+                    <input id='url' name='url' type='text' className='form-control' />
+                </div>
+            </div>
+            <button id='createButton' type='submit' className='btn btn-info'>Create</button>
         </form>
     )
 }

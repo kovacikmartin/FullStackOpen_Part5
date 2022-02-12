@@ -24,15 +24,9 @@ const ToggleBlogDetails = (props) => {
         setDetailsHidden(!detailsHidden)
     }
 
-    const expanded = { display: detailsHidden ? 'block' : 'none' }
+    const expanded = { display: detailsHidden ? 'block' : 'none', margin: '20px 0px 0px' }
 
     const blog = useSelector(({ blog }) => blog.filter(blog => blog.id === props.children.props.blog.id))
-
-    const blogStyle = {
-
-        border: '1px solid black',
-        marginBottom: 10
-    }
 
     const remove = async (blogToDelete) => {
 
@@ -51,18 +45,18 @@ const ToggleBlogDetails = (props) => {
 
     return(
 
-        <div style={blogStyle} className='blogTogglable'>
-            {props.children}<button type='button' onClick={toggleDetails}>{buttonLabel}</button>
+        <div className='blogTogglable'>
+            {props.children}<button type='button' onClick={toggleDetails} className='btn btn-info btn-sm'>{buttonLabel}</button>
 
             <div style={expanded} className='expanded'>
                 {blog.map(blog => (
                     <div key={blog.id}>
-                        <p>url: {blog.url}</p>
+                        <a href={blog.url}>url</a>
                         <p>likes: {blog.likes}</p>
                         <p>user: {blog.user.username}</p>
                         {blog.user.username === props.postedBy ?
 
-                            <button type='button' onClick={() => remove(blog)}>Remove</button> : null
+                            <button type='button' onClick={() => remove(blog)} className='btn btn-danger btn-sm'>Remove</button> : null
                         }
 
                     </div>

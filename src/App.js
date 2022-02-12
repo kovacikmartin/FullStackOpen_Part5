@@ -93,19 +93,31 @@ const App = () => {
 
     return (
 
-        <div>
+        <div className='container'>
             <h2>Blogs</h2>
-            {notification === '' ? null : <p>{notification}</p>}
+            {notification === '' ? null :
+
+                <div className='alert alert-info' role='alert'>
+                    {notification}
+                </div>
+            }
 
             {user === null ?
                 loginForm() :
 
                 <div>
-                    <div>
-                        <Link to='/blogs'>blogs</Link>
-                        <Link to='/users'>users</Link>
-                        <p>{user.username} is logged in <button type='button' onClick={logoutHandle}>Log out</button></p>
-                    </div>
+                    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+                        <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+                            <span className='navbar-toggler-icon'></span>
+                        </button>
+                        <div className='collapse navbar-collapse' id='navbarNav'>
+                            <div className='navbar-nav'>
+                                <Link to='/blogs' className='nav-item nav-link text-light'>Blogs</Link>
+                                <Link to='/users' className='nav-item nav-link text-light'>Users</Link>
+                            </div>
+                            <span className='nav-item ms-auto text-info'>{user.username} is logged in <button type='button' className='btn btn-light btn-sm' onClick={logoutHandle}>Log out</button></span>
+                        </div>
+                    </nav><br/>
 
                     <Switch>
 
@@ -115,7 +127,7 @@ const App = () => {
 
                         <Route path='/blogs'>
                             {blogForm()}<br/>
-                            <div>
+                            <div className='d-grid gap-4 bg-light'>
                                 {blogs.map(blog =>
 
                                     <ToggleBlogDetails key={blog.id} buttonLabel='View' postedBy={user.username}>

@@ -33,9 +33,19 @@ const LoginForm = () => {
     return(
 
         <form onSubmit={login}>
-            username: <input id='loginFormUsername' name='username' type='text' /><br/>
-            password: <input id='loginFormPassword' name='password' type='password'/><br/><br/>
-            <button id='loginFormLogin' type='submit'>Log in</button>
+            <div className='row mb-3'>
+                <label htmlFor='username' className='col-form-label'>Username</label>
+                <div className='col-sm-4'>
+                    <input id='loginFormUsername' name='username' type='text' className='form-control' />
+                </div>
+            </div>
+            <div className='row mb-3'>
+                <label htmlFor='password' className='col-form-label'>Password</label>
+                <div className='col-sm-4'>
+                    <input id='loginFormPassword' name='password' type='password' className='form-control' />
+                </div>
+            </div>
+            <button className='btn btn-info' id='loginFormLogin' type='submit'>Log in</button>
         </form>
     )
 }
